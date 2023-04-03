@@ -52,5 +52,16 @@ RSpec.describe "New User Page" do
       expect(current_path).to eq(register_path)
       within("#flash_message") { expect(page).to have_content("Unable to create new user - [\"Email has already been taken\"]")}
     end
+
+    it "should not be able to submit the form without matching password and password confirmation values" do
+      fill_in :user_name, with: "James"
+      fill_in :user_email, with: "james@aol.com"
+      fill_in :user_password, with: "password123"
+      fill_in :user_password_confirmation, with: "password321"
+      click_button "Create New User"
+
+      expect(current_path).to eq(register_path)
+      within("#flash_message") { expect(page).to have_content("Unable to create new user - [\"Password confirmation doesn't match Password\"]")}
+    end
   end
 end
