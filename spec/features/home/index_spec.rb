@@ -26,6 +26,14 @@ RSpec.describe 'home page, index', type: :feature do
           expect(page).to have_link("mike@hotmail.com", href: user_path(@mike))
         }
       end
+
+      it "has a link to log in" do
+        expect(page).to have_link("Login", href: login_path)
+
+        click_link "Login"
+
+        expect(current_path).to eq(login_path)
+      end
     end
   end
 end
