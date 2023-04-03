@@ -4,10 +4,10 @@ RSpec.describe "New Viewing Party Page" do
   describe "As a user" do
     describe "When I visit the new viewing party page (/users/:user_id/movies/:movid_id/viewing-party/new, where :user_id is a valid user's id)", :vcr do
       before(:each) do
-        @james = User.create!(name: "James", email: "james@email.com")
-        @adam = User.create!(name: "Adam", email: "adam@email.com")
-        @mike = User.create!(name: "Mike", email: "mike@email.com")
-        @abdul = User.create!(name: "Abdul", email: "abdul@email.com")
+        @james = User.create!(name: "James", email: "james@email.com", password: "test123", password_confirmation: "test123")
+        @adam = User.create!(name: "Adam", email: "adam@email.com", password: "test123", password_confirmation: "test123")
+        @mike = User.create!(name: "Mike", email: "mike@email.com", password: "test123", password_confirmation: "test123")
+        @abdul = User.create!(name: "Abdul", email: "abdul@email.com", password: "test123", password_confirmation: "test123")
         
         visit new_user_movie_viewing_party_path(@james, 550)
       end

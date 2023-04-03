@@ -9,23 +9,31 @@ RSpec.describe "New User Page" do
     it "should see a form that requires name, email and register button which redirects to '/users/:id' page when filled in" do
       expect(page).to have_field(:user_name)
       expect(page).to have_field(:user_email)
+      expect(page).to have_field(:user_password)
+      expect(page).to have_field(:user_password_confirmation)
       expect(page).to have_button("Create New User")
 
       fill_in :user_name, with: "James"
       fill_in :user_email, with: "james@aol.com"
+      fill_in :user_password, with: "password123"
+      fill_in :user_password_confirmation, with: "password123"
       click_button "Create New User"
 
       expect(current_path).to eq(user_path(User.last))
     end
 
-    it 'should not be able to submit the form without the email' do
+    it 'should not be able to submit the form without a name' do
       fill_in :user_email, with: "james@aol.com"
+      fill_in :user_password, with: "password123"
+      fill_in :user_password_confirmation, with: "password123"
       click_button "Create New User"
 
       expect(current_path).to eq(register_path)
       within("#flash_message") { expect(page).to have_content("Unable to create new user - [\"Name can't be blank\"]")}
 
       fill_in :user_name, with: "james"
+      fill_in :user_password, with: "password123"
+      fill_in :user_password_confirmation, with: "password123"
       click_button "Create New User"
 
       expect(current_path).to eq(register_path)
@@ -33,12 +41,14 @@ RSpec.describe "New User Page" do
     end
 
     it 'should not be able to submit the form without a unique email' do
-      User.create(name: "mike", email: "mike@aol.com")
+      User.create!(name: "mike", email: "mike@aol.com", password: "password123", password_confirmation: "password123")
 
       fill_in :user_name, with: "mike"
       fill_in :user_email, with: "mike@aol.com"
+      fill_in :user_password, with: "password123"
+      fill_in :user_password_confirmation, with: "password123"
       click_button "Create New User"
-      
+
       expect(current_path).to eq(register_path)
       within("#flash_message") { expect(page).to have_content("Unable to create new user - [\"Email has already been taken\"]")}
     end

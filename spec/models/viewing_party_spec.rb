@@ -14,9 +14,9 @@ RSpec.describe ViewingParty do
   
   describe '#instance methods' do
     before :each do
-      @adam = User.create!( name: 'adam', email: 'adam@example.com')
-      @james = User.create!( name: 'james', email: 'james@example.com')
-      @mike = User.create!( name: 'mike', email: 'mike@example.com')
+      @adam = User.create!( name: 'adam', email: 'adam@example.com', password: "test123", password_confirmation: "test123")
+      @james = User.create!( name: 'james', email: 'james@example.com', password: "test123", password_confirmation: "test123")
+      @mike = User.create!( name: 'mike', email: 'mike@example.com', password: "test123", password_confirmation: "test123")
       
       @fight_club = ViewingParty.create!( duration_minutes: 139, party_date: "2123-12-28", party_time: "1:39", host_id: @james.id, movie_id: 550 )
 

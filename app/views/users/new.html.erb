@@ -11,6 +11,16 @@
       <%= form.label :email %>
       <%= form.email_field :email  %>
     </p>
+
+    <p>
+      <%= form.label :password %>
+      <%= form.text_field :password %>
+    </p>
+
+    <p>
+      <%= form.label :password_confirmation %>
+      <%= form.text_field :password_confirmation %>
+    </p>
     <%= form.submit "Create New User" %>
   <% end %>
 </center>

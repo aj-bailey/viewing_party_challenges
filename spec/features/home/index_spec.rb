@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'home page, index', type: :feature do 
 
   before :each do
-    @adam = User.create!(name: "Adam", email: "adam@aol.com")
-    @james = User.create!(name: "James", email: "james@gmail.com")
-    @mike = User.create!(name: "Mike", email: "mike@hotmail.com")
+    @adam = User.create!(name: "Adam", email: "adam@aol.com", password: "test123", password_confirmation: "test123")
+    @james = User.create!(name: "James", email: "james@gmail.com", password: "test123", password_confirmation: "test123")
+    @mike = User.create!(name: "Mike", email: "mike@hotmail.com", password: "test123", password_confirmation: "test123")
     visit "/"
   end
 

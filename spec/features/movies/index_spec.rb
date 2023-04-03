@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Movies Index Page" do
   describe "when I visit the movies results page" do
     before(:each) do
-      @james = User.create!(name: "James", email: "james@email.com")
+      @james = User.create!(name: "James", email: "james@email.com", password: "test123", password_confirmation: "test123")
 
       visit user_discover_index_path(@james)
     end

@@ -4,7 +4,7 @@ RSpec.describe "User Discover Index Page" do
   describe 'As a user' do
     describe "When I visit the '/users/:id/discover' path, where :id, is the id of a valid user" do
       before(:each) do
-        @user = User.create!(name: "Adam", email: "adam@gmail.com")
+        @user = User.create!(name: "Adam", email: "adam@gmail.com", password: "test123", password_confirmation: "test123")
         visit user_discover_index_path(@user)
       end
 
