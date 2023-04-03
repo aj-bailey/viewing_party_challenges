@@ -41,7 +41,7 @@ RSpec.describe "New User Page" do
     end
 
     it 'should not be able to submit the form without a unique email' do
-      User.create!(name: "mike", email: "mike@aol.com", password: "password123", password_confirmation: "password123")
+      User.create!(name: "mike", email: "mike@aol.com", password: "password123")
 
       fill_in :user_name, with: "mike"
       fill_in :user_email, with: "mike@aol.com"
