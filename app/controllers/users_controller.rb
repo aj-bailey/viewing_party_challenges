@@ -30,8 +30,8 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome, #{user.email}"
       redirect_to user_path(user)
     else
-      flash[:error] = "Sorry, your credentials are bad"
-      render :login_form
+      flash.now[:error] = "Sorry, your credentials are bad"
+      render :login_form, status: 400
     end
   end
 
