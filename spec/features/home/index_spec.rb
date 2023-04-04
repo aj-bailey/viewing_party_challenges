@@ -36,4 +36,17 @@ RSpec.describe 'home page, index', type: :feature do
       end
     end
   end
+
+  describe "As a logged in user" do
+    it "can no longer see a link to log in or create an account when visiting landing page" do
+      user = User.create!(name: "mike", email: "mike@aol.com", password: "password123")
+      
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      visit root_path
+      
+      expect(page).to_not have_link("Login")
+      expect(page).to have_link("Logout")
+    end
+  end
 end
