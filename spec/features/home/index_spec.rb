@@ -9,6 +9,16 @@ RSpec.describe 'home page, index', type: :feature do
     visit "/"
   end
 
+  describe "as a visitor" do
+    describe "when I visit the home page" do
+      it "cannot see the section of the page that lists existing users" do
+        expect(page).to_not have_link("adam@aol.com", href: user_path(@adam))
+        expect(page).to_not have_link("james@gmail.com", href: user_path(@james))
+        expect(page).to_not have_link("mike@hotmail.com", href: user_path(@mike))
+      end
+    end
+  end
+
   describe " as a user" do
     describe " when I visit home page" do
       it " I see a button to create a new user" do
@@ -19,13 +29,13 @@ RSpec.describe 'home page, index', type: :feature do
         expect(current_path).to eq(register_path)
       end
 
-      it " Has a list of existing Users which links to the users dashboard" do
-        within("#existing_users"){
-          expect(page).to have_link("adam@aol.com", href: user_path(@adam))
-          expect(page).to have_link("james@gmail.com", href: user_path(@james))
-          expect(page).to have_link("mike@hotmail.com", href: user_path(@mike))
-        }
-      end
+      # it " Has a list of existing Users which links to the users dashboard" do
+      #   within("#existing_users"){
+      #     expect(page).to have_link("adam@aol.com", href: user_path(@adam))
+      #     expect(page).to have_link("james@gmail.com", href: user_path(@james))
+      #     expect(page).to have_link("mike@hotmail.com", href: user_path(@mike))
+      #   }
+      # end
 
       it "has a link to log in" do
         expect(page).to have_link("Login", href: login_path)

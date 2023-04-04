@@ -1,11 +1,6 @@
 <% if current_user %>
   <p><%= link_to "Logout", logout_path %></p>
-<% else %>
-  <p><%= link_to "Login", login_path %></p>
-  <p><%= button_to "Create new user", register_path, method: :get %></p>
-<% end %>
-
-<center>
+  <center>
   <h2>Existing Users</h2>
   <div id="existing_users">
     <% @users.each do |user| %>
@@ -13,3 +8,9 @@
     <%end%>
   </div>
 </center>
+
+<% else %>
+  <p><%= link_to "Login", login_path %></p>
+  <p><%= button_to "Create new user", register_path, method: :get %></p>
+<% end %>
+
