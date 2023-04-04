@@ -4,7 +4,7 @@
   <h2>Existing Users</h2>
   <div id="existing_users">
     <% @users.each do |user| %>
-      <p><%=link_to user.email, user_path(user)%></p>
+      <p><%= user.email %></p>
     <%end%>
   </div>
 </center>
