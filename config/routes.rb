@@ -9,6 +9,11 @@ Rails.application.routes.draw do
     resources :viewing_parties, only: [:new, :create]
   end
 
+  namespace :admin do
+    get "/dashboard", to: "dashboard#index"
+    resources :users, only: [:show]
+  end
+
   get "/dashboard", to: "users#show"
   get '/register', to: 'users#new'
 

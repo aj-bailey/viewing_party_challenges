@@ -22,4 +22,18 @@ RSpec.describe User do
       expect(user.password_digest).to_not eq("password123")
     end
   end
+
+  describe "::class methods" do
+    describe "#default_users" do
+      it "returns a list of default users" do
+        admin = User.create!(name: "admin", email: "admin@admin.admin", password: "admin123", role: 1)
+
+        user_1 = User.create!(name: "mike", email: "mike@aol.com", password: "password123")
+        user_2 = User.create!(name: "abdul", email: "abdul@aol.com", password: "password123")
+        user_3 = User.create!(name: "adam", email: "adam@aol.com", password: "password123")
+
+        expect(User.default_users).to eq([user_1, user_2, user_3])
+      end
+    end
+  end
 end

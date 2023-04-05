@@ -1,0 +1,8 @@
+<center>
+  <h2>Existing Users</h2>
+  <div id="default_users">
+    <% @default_users.each do |default_user| %>
+      <p><%= link_to default_user.email, admin_user_path(default_user) %></p>
+    <%end%>
+  </div>
+</center>
