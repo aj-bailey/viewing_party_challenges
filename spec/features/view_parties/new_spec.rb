@@ -15,7 +15,7 @@ RSpec.describe "New Viewing Party Page" do
 
         click_on "Log In"
 
-        visit new_user_movie_viewing_party_path(@james, 550)
+        visit new_movie_viewing_party_path(550)
       end
 
       it "should see a button to return to the discover page" do 
@@ -66,14 +66,14 @@ RSpec.describe "New Viewing Party Page" do
       end
 
       it "cannot create a party with less minutes than movie runtime" do
-        visit new_user_movie_viewing_party_path(@james, 550)
+        visit new_movie_viewing_party_path(550)
         fill_in :party_date, with: "2023-12-28"
         fill_in :party_time, with: "21:17"
         fill_in :duration_minutes, with: 0
 
         click_button "Create Party"
 
-        expect(current_path).to eq(new_user_movie_viewing_party_path(@james, 550))
+        expect(current_path).to eq(new_movie_viewing_party_path(550))
         within("#flash_message") { expect(page).to have_content("Unable to create viewing party - [\"Duration minutes cannot be less than movie runtime\"]")}
       end
 
@@ -83,7 +83,7 @@ RSpec.describe "New Viewing Party Page" do
 
         click_button "Create Party"
 
-        expect(current_path).to eq(new_user_movie_viewing_party_path(@james, 550))
+        expect(current_path).to eq(new_movie_viewing_party_path(550))
         within("#flash_message") { expect(page).to have_content("Unable to create viewing party - [\"Party date cannot be in the past\"]")}
       end
     end

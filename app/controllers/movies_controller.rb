@@ -7,7 +7,6 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
     @movie_facade = MovieFacade.new(params)
   end
 end

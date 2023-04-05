@@ -2,7 +2,7 @@
   <h2><%= @movie_facade.movie.title %></h2>
 
   <p><%= button_to "Discover Movies", discover_index_path, method: :get %></p>
-  <p><%= button_to "Create Viewing Party for #{ @movie_facade.movie.title }", new_user_movie_viewing_party_path(@user, @movie_facade.movie.id), method: :get %></p>
+  <p><%= button_to "Create Viewing Party for #{ @movie_facade.movie.title }", new_movie_viewing_party_path(@movie_facade.movie.id), method: :get %></p>
 
 
   <p> 

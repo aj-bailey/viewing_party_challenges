@@ -28,7 +28,7 @@ RSpec.describe "movie's detail page", type: :feature do
 
         click_button("Create Viewing Party for The Godfather")
 
-        expect(current_path).to eq(new_user_movie_viewing_party_path(@adam, 238))
+        expect(current_path).to eq(new_movie_viewing_party_path(238))
       end
 
         #how do better??
