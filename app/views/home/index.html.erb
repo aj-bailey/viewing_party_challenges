@@ -1,5 +1,5 @@
 <% if current_user %>
-  <p><%= link_to "Logout", logout_path, method: :delete %></p>
+  <p><%= link_to "Logout", logout_path, method: :delete, data: {turbo_method: :delete} %></p>
   <center>
   <h2>Existing Users</h2>
   <div id="existing_users">
