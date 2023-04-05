@@ -4,7 +4,7 @@
     <ul>
       <% @movie_facade.retrieve_movies.each do |movie| %>
         <p>
-            <%= link_to movie.title, user_movie_path(@user, movie.id) %>
+            <%= link_to movie.title, movie_path(movie.id) %>
         </p>
       <% end %>
     </ul>

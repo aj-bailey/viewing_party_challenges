@@ -21,7 +21,7 @@ RSpec.describe "User Discover Index Page" do
           click_button "Find Top Rated Movies"
         end
 
-        expect(current_path).to eq(user_movies_path(@user))
+        expect(current_path).to eq(movies_path)
       end
 
       it "can search by keyword(s) for movie titles" do
@@ -34,7 +34,7 @@ RSpec.describe "User Discover Index Page" do
           click_button "Find Movies"
         end
 
-        expect(current_path).to eq(user_movies_path(@user))
+        expect(current_path).to eq(movies_path)
       end
     end
   end

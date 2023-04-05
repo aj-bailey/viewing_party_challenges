@@ -29,7 +29,7 @@ RSpec.describe "Movies Index Page" do
       end
       
       it "should include 'top+rated' in query params" do
-        expect(current_url).to eq("http://www.example.com/users/#{@james.id}/movies?q=top+rated")
+        expect(current_url).to eq("http://www.example.com/movies?q=top+rated")
       end
 
       it 'should return 200 status code' do
@@ -54,7 +54,7 @@ RSpec.describe "Movies Index Page" do
       end
       
       it "should include 'top+rated' in query params" do
-        expect(current_url).to eq("http://www.example.com/users/#{@james.id}/movies?q=Fight+Club&commit=Find+Movies")
+        expect(current_url).to eq("http://www.example.com/movies?q=Fight+Club&commit=Find+Movies")
       end
 
       it 'should return 200 status code' do
