@@ -32,6 +32,14 @@ RSpec.describe 'home page, index', type: :feature do
 
         expect(current_path).to eq(login_path)
       end
+
+      it "cannot visit /dashboard until logged in or registered to access dashboard" do
+        visit dashboard_path
+
+        expect(current_path).to eq(root_path)
+
+        within("#flash_message") { expect(page).to have_content("You must be logged in to access dashboard") }
+      end
     end
   end
 
@@ -49,9 +57,9 @@ RSpec.describe 'home page, index', type: :feature do
           expect(page).to have_content("james@gmail.com")
           expect(page).to have_content("mike@hotmail.com")
 
-          expect(page).to_not have_link("adam@aol.com", href: user_path(@adam))
-          expect(page).to_not have_link("james@gmail.com", href: user_path(@james))
-          expect(page).to_not have_link("mike@hotmail.com", href: user_path(@mike))
+          expect(page).to_not have_link("adam@aol.com", href: dashboard_path)
+          expect(page).to_not have_link("james@gmail.com", href: dashboard_path)
+          expect(page).to_not have_link("mike@hotmail.com", href: dashboard_path)
         }
       end
 

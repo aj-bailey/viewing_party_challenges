@@ -9,12 +9,24 @@ RSpec.describe "User dashboard(show) page", type: :feature do
 
   describe " when I visit the user dashboard" do
     it " I see users name at the top of the page " do
-      visit user_path(@adam.id)
+      visit login_path
+      fill_in :email, with: @adam.email
+      fill_in :password, with: @adam.password
+
+      click_on "Log In"
+
+      visit dashboard_path
       expect(page).to have_content "Adam's Dashboard"
     end
 
     it " I see a button to Discover Movies" do
-      visit user_path(@adam.id)
+      visit login_path
+      fill_in :email, with: @adam.email
+      fill_in :password, with: @adam.password
+
+      click_on "Log In"
+
+      visit dashboard_path
 
       expect(page).to have_button "Discover Movies"
 
@@ -30,7 +42,13 @@ RSpec.describe "User dashboard(show) page", type: :feature do
         ViewingPartyUser.create!(user_id: @mike.id, viewing_party_id: @host_party.id)
         ViewingPartyUser.create!(user_id: @adam.id, viewing_party_id: @host_party.id)
 
-        visit user_path(@adam.id)
+        visit login_path
+        fill_in :email, with: @adam.email
+        fill_in :password, with: @adam.password
+
+        click_on "Log In"
+        
+        visit dashboard_path
 
         within("#viewing_party-#{@host_party.id}") {
           expect(page).to have_css("img")

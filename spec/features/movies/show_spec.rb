@@ -41,8 +41,8 @@ RSpec.describe "movie's detail page", type: :feature do
       } 
       
       within("#reviews"){
-        expect(page).to have_content("2 Reviews")
-        expect(page).to have_css("li", count: 2)
+        expect(page).to have_content("3 Reviews")
+        expect(page).to have_css("li", count: 3)
       } 
     end
   end

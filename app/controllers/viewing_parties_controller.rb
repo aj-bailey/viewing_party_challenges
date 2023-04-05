@@ -14,7 +14,7 @@ class ViewingPartiesController < ApplicationController
 
       create_viewing_party_users(params[:users], viewing_party.id, params[:user_id])
 
-      redirect_to user_path(params[:user_id])
+      redirect_to dashboard_path
 
     else
       flash[:notice] = "Unable to create viewing party - #{viewing_party.errors.full_messages}"

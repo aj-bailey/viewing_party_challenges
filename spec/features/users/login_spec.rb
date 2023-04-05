@@ -12,7 +12,7 @@ RSpec.describe "Login Page" do
 
       click_on "Log In"
 
-      expect(current_path).to eq(user_path(user))
+      expect(current_path).to eq(dashboard_path)
       within("#flash_message") { expect(page).to have_content("Welcome, #{user.email}")}
     end
 

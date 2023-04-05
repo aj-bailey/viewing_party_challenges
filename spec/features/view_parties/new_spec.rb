@@ -9,6 +9,12 @@ RSpec.describe "New Viewing Party Page" do
         @mike = User.create!(name: "Mike", email: "mike@email.com", password: "test123", password_confirmation: "test123")
         @abdul = User.create!(name: "Abdul", email: "abdul@email.com", password: "test123", password_confirmation: "test123")
         
+        visit login_path
+        fill_in :email, with: @james.email
+        fill_in :password, with: @james.password
+
+        click_on "Log In"
+
         visit new_user_movie_viewing_party_path(@james, 550)
       end
 
@@ -56,10 +62,11 @@ RSpec.describe "New Viewing Party Page" do
 
         click_button "Create Party"
 
-        expect(current_path).to eq(user_path(@james))
+        expect(current_path).to eq(dashboard_path)
       end
 
       it "cannot create a party with less minutes than movie runtime" do
+        visit new_user_movie_viewing_party_path(@james, 550)
         fill_in :party_date, with: "2023-12-28"
         fill_in :party_time, with: "21:17"
         fill_in :duration_minutes, with: 0
