@@ -9,11 +9,18 @@ RSpec.describe "movie's detail page", type: :feature do
 
   describe "when I visit the movie details page", :vcr do
     it "should see a button to return to the discover page" do 
+      visit login_path
+      fill_in :email, with: @adam.email
+      fill_in :password, with: @adam.password
+
+      click_on "Log In"
+      visit user_movie_path(@adam, 238)
+
       expect(page).to have_button("Discover Movies")
 
       click_button("Discover Movies")
 
-      expect(current_path).to eq(user_discover_index_path(@adam))
+      expect(current_path).to eq(discover_index_path)
     end
 
     it "should have a button to create a viewing party" do 

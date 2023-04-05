@@ -23,7 +23,7 @@ RSpec.describe "New Viewing Party Page" do
   
         click_button("Discover Movies")
   
-        expect(current_path).to eq(user_discover_index_path(@james))
+        expect(current_path).to eq(discover_index_path)
       end
 
       it "should see the movie title above a form which includes Party Duration, Date, Time, (un)Checkboxes for users and 'Create a Party' button" do

@@ -5,7 +5,12 @@ RSpec.describe "Movies Index Page" do
     before(:each) do
       @james = User.create!(name: "James", email: "james@email.com", password: "test123", password_confirmation: "test123")
 
-      visit user_discover_index_path(@james)
+      visit login_path
+      fill_in :email, with: @james.email
+      fill_in :password, with: @james.password
+      click_on "Log In"
+
+      visit discover_index_path
     end
 
     context "Top Movies" do
@@ -20,7 +25,7 @@ RSpec.describe "Movies Index Page" do
         
         click_button "Discover Movies"
         
-        expect(current_path).to eq(user_discover_index_path(@james))
+        expect(current_path).to eq(discover_index_path)
       end
       
       it "should include 'top+rated' in query params" do

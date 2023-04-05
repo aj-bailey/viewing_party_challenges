@@ -32,7 +32,7 @@ RSpec.describe "User dashboard(show) page", type: :feature do
 
       click_button "Discover Movies"
 
-      expect(current_path).to eq(user_discover_index_path(@adam.id))
+      expect(current_path).to eq(discover_index_path)
     end
 
     describe "I am associated with viewing parties" do

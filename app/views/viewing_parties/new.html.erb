@@ -1,6 +1,6 @@
 <center>
   <h2>Create a Movie Party for <%= @movie_facade.movie.title %></h2>
-  <p><%= button_to "Discover Movies", user_discover_index_path(@user), method: :get %></p>
+  <p><%= button_to "Discover Movies", discover_index_path, method: :get %></p>
 
   <div class="viewing_party_container", id="party_details">
     <h4>Viewing Party Details</h4>
