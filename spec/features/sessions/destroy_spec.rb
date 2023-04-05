@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Logging out" do
+RSpec.describe "Session Destroy" do
   describe "As a logged in user" do
     it "can no longer see a link to log in or create an account when visiting landing page" do
       user = User.create!(name: "mike", email: "mike@aol.com", password: "password123")

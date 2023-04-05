@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Login Page" do
+RSpec.describe "Session New" do
   describe "Logging In" do
     it "can log in with valid credentials" do
       user = User.create!(name: "mike", email: "mike@aol.com", password: "password123")
