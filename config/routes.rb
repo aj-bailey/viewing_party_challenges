@@ -1,14 +1,23 @@
 Rails.application.routes.draw do
   root "home#index"
 
-  resources :users, only: [:create, :show] do
-    resources :discover, only: [:index]
-    resources :movies, only: [:index, :show] do
-      resources :viewing_parties, only: [:new, :create]
-    end
+  resources :users, only: [:create]
+
+  resources :discover, only: [:index]
+
+  resources :movies, only: [:index, :show] do
+    resources :viewing_parties, only: [:new, :create]
   end
 
+  namespace :admin do
+    get "/dashboard", to: "dashboard#index"
+    resources :users, only: [:show]
+  end
+
+  get "/dashboard", to: "users#show"
   get '/register', to: 'users#new'
-  get '/login', to: 'users#login_form'
-  post '/login', to: 'users#login_user'
+
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete "/logout", to: "sessions#destroy"
 end

@@ -15,7 +15,7 @@ RSpec.describe Movie do
       it 'has readable attributes' do
         expect(@movie.id).to eq(550)
         expect(@movie.title).to eq("Fight Club")
-        expect(@movie.vote_average).to eq(8.432)
+        expect(@movie.vote_average).to eq(8.431)
         expect(@movie.runtime).to eq(139)
 
         expect(@movie.genres).to eq(

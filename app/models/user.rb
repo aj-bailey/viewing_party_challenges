@@ -6,4 +6,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
 
   has_secure_password
+
+  enum role: ["default", "admin"]
+
+  scope :default_users, -> { where(role: "default") }
 end

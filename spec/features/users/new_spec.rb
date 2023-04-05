@@ -19,7 +19,7 @@ RSpec.describe "New User Page" do
       fill_in :user_password_confirmation, with: "password123"
       click_button "Create New User"
 
-      expect(current_path).to eq(user_path(User.last))
+      expect(current_path).to eq(dashboard_path)
     end
 
     it 'should not be able to submit the form without a name' do

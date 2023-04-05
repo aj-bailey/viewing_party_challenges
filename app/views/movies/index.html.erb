@@ -1,10 +1,10 @@
-<p><center><%= button_to "Discover Movies", user_discover_index_path(@user), method: :get %></center></p>
+<p><center><%= button_to "Discover Movies", discover_index_path, method: :get %></center></p>
 <div class="movie_main_container", id="movies">
   <div class="movie_container", id="movie_titles">
     <ul>
       <% @movie_facade.retrieve_movies.each do |movie| %>
         <p>
-            <%= link_to movie.title, user_movie_path(@user, movie.id) %>
+            <%= link_to movie.title, movie_path(movie.id) %>
         </p>
       <% end %>
     </ul>

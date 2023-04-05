@@ -1,9 +1,15 @@
 class ViewingPartiesController < ApplicationController
   def new
-    @user = User.find(params[:user_id])
-    @users = User.all
-    @viewing_party = ViewingParty.new
-    @movie_facade = MovieFacade.new(params)
+    if current_user
+      @user = User.find(session[:user_id])
+      @users = User.all
+      @viewing_party = ViewingParty.new
+      @movie_facade = MovieFacade.new(params)
+    else
+      flash[:notice] = "You must be logged in to create a viewing party"
+
+      redirect_to movie_path(params[:movie_id])
+    end
   end
 
   def create
@@ -12,13 +18,13 @@ class ViewingPartiesController < ApplicationController
     if viewing_party.save
       flash[:notice] = "Viewing party created"
 
-      create_viewing_party_users(params[:users], viewing_party.id, params[:user_id])
+      create_viewing_party_users(params[:users], viewing_party.id, session[:user_id])
 
-      redirect_to user_path(params[:user_id])
+      redirect_to dashboard_path
 
     else
       flash[:notice] = "Unable to create viewing party - #{viewing_party.errors.full_messages}"
-      redirect_to new_user_movie_viewing_party_path(params[:user_id], params[:movie_id])
+      redirect_to new_movie_viewing_party_path(params[:movie_id])
     end
   end
 

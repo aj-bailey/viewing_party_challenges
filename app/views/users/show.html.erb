@@ -1,7 +1,7 @@
 <center>
   <h2><%= @user.name.capitalize %>'s Dashboard </h2>
 
-  <p><%= button_to "Discover Movies", user_discover_index_path(@user), method: :get %></p>
+  <p><%= button_to "Discover Movies", discover_index_path, method: :get %></p>
 
   <section class="view_parties_container">
     <% @user_viewing_parties.each do |viewing_party| %>

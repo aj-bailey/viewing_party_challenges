@@ -9,7 +9,13 @@ RSpec.describe "New Viewing Party Page" do
         @mike = User.create!(name: "Mike", email: "mike@email.com", password: "test123", password_confirmation: "test123")
         @abdul = User.create!(name: "Abdul", email: "abdul@email.com", password: "test123", password_confirmation: "test123")
         
-        visit new_user_movie_viewing_party_path(@james, 550)
+        visit login_path
+        fill_in :email, with: @james.email
+        fill_in :password, with: @james.password
+
+        click_on "Log In"
+
+        visit new_movie_viewing_party_path(550)
       end
 
       it "should see a button to return to the discover page" do 
@@ -17,7 +23,7 @@ RSpec.describe "New Viewing Party Page" do
   
         click_button("Discover Movies")
   
-        expect(current_path).to eq(user_discover_index_path(@james))
+        expect(current_path).to eq(discover_index_path)
       end
 
       it "should see the movie title above a form which includes Party Duration, Date, Time, (un)Checkboxes for users and 'Create a Party' button" do
@@ -56,17 +62,18 @@ RSpec.describe "New Viewing Party Page" do
 
         click_button "Create Party"
 
-        expect(current_path).to eq(user_path(@james))
+        expect(current_path).to eq(dashboard_path)
       end
 
       it "cannot create a party with less minutes than movie runtime" do
+        visit new_movie_viewing_party_path(550)
         fill_in :party_date, with: "2023-12-28"
         fill_in :party_time, with: "21:17"
         fill_in :duration_minutes, with: 0
 
         click_button "Create Party"
 
-        expect(current_path).to eq(new_user_movie_viewing_party_path(@james, 550))
+        expect(current_path).to eq(new_movie_viewing_party_path(550))
         within("#flash_message") { expect(page).to have_content("Unable to create viewing party - [\"Duration minutes cannot be less than movie runtime\"]")}
       end
 
@@ -76,7 +83,7 @@ RSpec.describe "New Viewing Party Page" do
 
         click_button "Create Party"
 
-        expect(current_path).to eq(new_user_movie_viewing_party_path(@james, 550))
+        expect(current_path).to eq(new_movie_viewing_party_path(550))
         within("#flash_message") { expect(page).to have_content("Unable to create viewing party - [\"Party date cannot be in the past\"]")}
       end
     end

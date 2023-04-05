@@ -1,0 +1,26 @@
+<center>
+  <h2>Admin: <%= @user.name.capitalize %>'s Dashboard </h2>
+
+  <p><%= button_to "Discover Movies", discover_index_path, method: :get %></p>
+
+  <section class="view_parties_container">
+    <% @user_viewing_parties.each do |viewing_party| %>
+    <div class="viewing_party_container", id="viewing_party-<%=viewing_party.id%>">
+      <p><%= image_tag "https://image.tmdb.org/t/p/original#{@movie_facade.find_movie(viewing_party.movie_id).image_path}", height: '130', width: '87' %></p>
+      <p><%= @movie_facade.find_movie(viewing_party.movie_id).title %></p>
+      <p>Date: <%= viewing_party.party_date.strftime('%B %-d, %Y') %></p>
+      <p>Time: <%= viewing_party.party_time.strftime('%-I:%M %P') %></p>
+      <p>Host: <b><%= viewing_party.host.name.capitalize %></b></p>
+      
+      <div id="viewing_party_users">
+        <p>Viewing Party Guests:</p>
+        <ul>
+          <% viewing_party.guests.each do |guest| %>
+            <li><%= guest.name.capitalize %></li>
+          <% end %>
+        </ul> 
+      </div>
+    </div>
+    <% end %>
+  </section>
+</center>
