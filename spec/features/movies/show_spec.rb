@@ -4,12 +4,10 @@ RSpec.describe "movie's detail page", type: :feature do
   before(:each) do
     @adam = User.create!(name: "Adam", email: "adam@adammail.com", password: "test123", password_confirmation: "test123")
     
-    VCR.use_cassette("movie_details", serialize_with: :json) do
-      visit user_movie_path(@adam, 238)
-    end
+    visit user_movie_path(@adam, 238)
   end
 
-  describe "when I visit the movie destails page" do
+  describe "when I visit the movie details page", :vcr do
     it "should see a button to return to the discover page" do 
       expect(page).to have_button("Discover Movies")
 
@@ -20,12 +18,14 @@ RSpec.describe "movie's detail page", type: :feature do
 
     it "should have a button to create a viewing party" do 
       expect(page).to have_button("Create Viewing Party for The Godfather")
+    end
 
-      VCR.use_cassette("movie_details", serialize_with: :json) do
-        click_button("Create Viewing Party for The Godfather")
-      end
+    it "should not be able to create a viewing party when not logged in" do
+      click_button("Create Viewing Party for The Godfather")
 
-      expect(current_path).to eq(new_user_movie_viewing_party_path(@adam, 238))
+      expect(current_path).to eq(user_movie_path(@adam, 238))
+
+      within("#flash_message") { expect(page).to have_content("You must be logged in to create a viewing party") }
     end
 
       #how do better??

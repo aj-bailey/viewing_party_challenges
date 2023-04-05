@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       redirect_to dashboard_path
     else
       flash.now[:error] = "Sorry, your credentials are bad"
-      render :login_form, status: 400
+      render :new, status: 400
     end
   end
 
@@ -19,10 +19,4 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path
   end
-
-  private
-
-    def user_params
-      params.require(:user).permit(:name, :email, :password)
-    end
 end
